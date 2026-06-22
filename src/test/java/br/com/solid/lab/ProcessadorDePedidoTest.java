@@ -1,5 +1,8 @@
 package br.com.solid.lab;
 
+import br.com.solid.lab.pedidos.Cliente;
+import br.com.solid.lab.pedidos.Pedido;
+import br.com.solid.lab.pedidos.ProcessadorDePedido;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

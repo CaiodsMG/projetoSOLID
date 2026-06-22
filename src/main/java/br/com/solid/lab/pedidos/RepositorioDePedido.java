@@ -1,4 +1,4 @@
-package br.com.solid.lab;
+package br.com.solid.lab.pedidos;
 
 import java.util.ArrayList;
 import java.util.List;
