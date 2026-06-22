@@ -8,15 +8,32 @@ import java.util.List;
 
 public class CalculadorDeTotal {
 
-    private final List<RegraDeDesconto> regraDeDescontos = List.of(new DescontoCupomBoasVindas(),
-                                                                    new DescontoPedidoGrande());
+    private final List<RegraDeDesconto> regraDeDescontos;
 
-    double calcular(Pedido pedido) {
+    public CalculadorDeTotal(List<RegraDeDesconto> regraDeDescontos) {
+        this.regraDeDescontos = regraDeDescontos;
+    }
+
+    public CalculadorDeTotal() {
+        this(List.of(
+                new DescontoCupomBoasVindas(),
+                new DescontoPedidoGrande()
+        ));
+    }
+
+
+    public double calcular(Pedido pedido) {
         double total = calcularSubtotal(pedido);
 
         for (RegraDeDesconto regra : regraDeDescontos) {
             total = regra.aplicar(pedido, total);
+
+            if (total < 0){
+                total = 0;
+            }
         }
+
+
 
         return total;
     }
@@ -30,4 +47,7 @@ public class CalculadorDeTotal {
 
         return subtotal;
     }
+
 }
+
+

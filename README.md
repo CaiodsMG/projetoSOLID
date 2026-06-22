@@ -30,7 +30,7 @@ Hoje ele tem:
 | --- | --- | --- |
 | 1 | S - Single Responsibility Principle | Concluída |
 | 2 | O - Open/Closed Principle | Concluída |
-| 3 | L - Liskov Substitution Principle | Próxima aula |
+| 3 | L - Liskov Substitution Principle | Concluída |
 | 4 | I - Interface Segregation Principle | Pendente |
 | 5 | D - Dependency Inversion Principle | Pendente |
 
@@ -82,6 +82,36 @@ O que eu fiz:
 - alterei o `CalculadorDeTotal` para aplicar uma lista de regras.
 
 Meu aprendizado aqui foi que o problema não é usar `if`. O problema é concentrar todas as variações no mesmo lugar. Agora, se eu quiser criar um desconto novo, posso criar uma nova classe de regra.
+
+## Aula 3: L - Liskov Substitution Principle
+
+Na terceira aula estudei o princípio da substituição de Liskov.
+
+O que eu entendi: se uma classe implementa uma interface, ela precisa conseguir ocupar o lugar dessa interface sem quebrar o sistema. Não basta "compilar"; ela precisa respeitar a promessa que a abstração representa.
+
+No meu projeto, o exemplo apareceu em `RegraDeDesconto`.
+
+Toda regra de desconto promete:
+
+- receber um `Pedido`;
+- receber o `totalAtual`;
+- devolver um total válido;
+- não quebrar o fluxo do cálculo;
+- não deixar o pedido em um estado estranho.
+
+Para praticar, criei uma regra perigosa chamada `DescontoMaiorQueTotal`. Ela simula uma regra que aplica um desconto maior do que o valor do pedido.
+
+Isso poderia gerar um total negativo, o que não faz sentido no domínio. Pedido com total negativo seria uma substituição perigosa, porque o `CalculadorDeTotal` espera trabalhar com totais válidos.
+
+O que eu fiz:
+
+- criei `DescontoMaiorQueTotal`;
+- alterei `CalculadorDeTotal` para receber uma lista de `RegraDeDesconto`;
+- mantive um construtor padrão com as regras reais;
+- protegi o cálculo para o total nunca ficar abaixo de zero;
+- criei `CalculadorDeTotalTest` para garantir esse comportamento.
+
+Meu aprendizado aqui foi que uma implementação precisa respeitar o contrato esperado por quem usa a interface. Se cada implementação faz qualquer coisa, a abstração perde confiança.
 
 ## Coisas que quero lembrar
 
