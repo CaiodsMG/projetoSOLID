@@ -31,8 +31,8 @@ Hoje ele tem:
 | 1 | S - Single Responsibility Principle | Concluída |
 | 2 | O - Open/Closed Principle | Concluída |
 | 3 | L - Liskov Substitution Principle | Concluída |
-| 4 | I - Interface Segregation Principle | Pendente |
-| 5 | D - Dependency Inversion Principle | Pendente |
+| 4 | I - Interface Segregation Principle | Concluída |
+| 5 | D - Dependency Inversion Principle | Próxima aula |
 
 ## Aula 1: S - Single Responsibility Principle
 
@@ -112,6 +112,29 @@ O que eu fiz:
 - criei `CalculadorDeTotalTest` para garantir esse comportamento.
 
 Meu aprendizado aqui foi que uma implementação precisa respeitar o contrato esperado por quem usa a interface. Se cada implementação faz qualquer coisa, a abstração perde confiança.
+
+## Aula 4: I - Interface Segregation Principle
+
+Na quarta aula estudei o princípio da segregação de interfaces.
+
+O que eu entendi: uma classe não deveria ser obrigada a depender de métodos que ela não usa. Interfaces grandes demais acabam empurrando responsabilidades erradas para classes que não precisam delas.
+
+No meu projeto, o exemplo ficou claro olhando para as partes do pedido:
+
+- `RepositorioDePedido` só precisa salvar pedido;
+- `ServicoDeEmail` só precisa enviar confirmação;
+- `GeradorDeRecibo` só precisa gerar recibo.
+
+Seria ruim criar uma interface gigante obrigando todas essas classes a implementar tudo, porque cada uma delas tem um papel diferente.
+
+O que eu fiz:
+
+- criei `RepositorioPedidos`;
+- criei `NotificacaoEmail`;
+- criei `GeradorRecibo`;
+- fiz cada classe implementar apenas a interface que combina com sua responsabilidade.
+
+Meu aprendizado aqui foi que interface também precisa ter foco. Uma interface pequena e bem nomeada ajuda o código a dizer melhor o que cada parte realmente faz.
 
 ## Coisas que quero lembrar
 

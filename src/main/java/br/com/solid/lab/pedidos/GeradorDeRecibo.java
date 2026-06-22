@@ -2,9 +2,10 @@ package br.com.solid.lab.pedidos;
 
 import java.time.LocalDateTime;
 
-public class GeradorDeRecibo {
+public class GeradorDeRecibo implements GeradorRecibo {
 
-    String gerarRecibo(Pedido pedido, double total){
+    @Override
+    public String gerarRecibo(Pedido pedido, double total){
 
         String recibo = "Recibo\n" +
                 "Cliente: " + pedido.cliente().nome() + "\n" +

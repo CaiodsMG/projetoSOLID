@@ -5,8 +5,11 @@ C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\descontos\R
 C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\CalculadorDeTotal.java
 C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\Cliente.java
 C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\GeradorDeRecibo.java
+C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\GeradorRecibo.java
 C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\ItemPedido.java
+C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\NotificacaoEmail.java
 C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\Pedido.java
 C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\ProcessadorDePedido.java
 C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\RepositorioDePedido.java
+C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\RepositorioPedidos.java
 C:\Users\caioc\OneDrive\Desktop\SOLID\src\main\java\br\com\solid\lab\pedidos\ServicoDeEmail.java
