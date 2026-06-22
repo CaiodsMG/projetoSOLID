@@ -32,7 +32,7 @@ Hoje ele tem:
 | 2 | O - Open/Closed Principle | Concluída |
 | 3 | L - Liskov Substitution Principle | Concluída |
 | 4 | I - Interface Segregation Principle | Concluída |
-| 5 | D - Dependency Inversion Principle | Próxima aula |
+| 5 | D - Dependency Inversion Principle | Concluída |
 
 ## Aula 1: S - Single Responsibility Principle
 
@@ -135,6 +135,37 @@ O que eu fiz:
 - fiz cada classe implementar apenas a interface que combina com sua responsabilidade.
 
 Meu aprendizado aqui foi que interface também precisa ter foco. Uma interface pequena e bem nomeada ajuda o código a dizer melhor o que cada parte realmente faz.
+
+## Aula 5: D - Dependency Inversion Principle
+
+Na quinta aula estudei o princípio da inversão de dependência.
+
+O que eu entendi: uma classe de alto nível não deveria ficar presa diretamente a classes concretas. Ela deve depender de abstrações sempre que isso fizer sentido.
+
+No meu projeto, o exemplo principal foi o `ProcessadorDePedido`.
+
+Antes, ele mesmo criava as dependências:
+
+```java
+private final GeradorDeRecibo geradorDeRecibo = new GeradorDeRecibo();
+private final RepositorioDePedido repositorioDePedidos = new RepositorioDePedido();
+private final ServicoDeEmail servicoDeEmail = new ServicoDeEmail();
+```
+
+Isso funcionava, mas deixava o processador acoplado às implementações concretas. Se eu quisesse trocar o repositório, o e-mail ou o gerador de recibo, teria que mexer dentro dele.
+
+O que eu fiz:
+
+- criei um construtor principal recebendo as dependências;
+- passei a usar as interfaces `GeradorRecibo`, `RepositorioPedidos` e `NotificacaoEmail`;
+- mantive um construtor padrão para montar a versão real do sistema;
+- deixei o `ProcessadorDePedido` coordenando o fluxo sem decidir todos os detalhes concretos.
+
+Meu aprendizado aqui foi que em algum lugar o sistema ainda precisa criar objetos concretos. O ponto é não espalhar essa decisão dentro das classes principais. Receber dependências pelo construtor deixa o código mais flexível e mais fácil de testar.
+
+## Fechamento
+
+Com esse laboratório, consegui passar pelas cinco letras do SOLID mexendo em um projeto pequeno, mas com problemas reais de design.
 
 ## Coisas que quero lembrar
 

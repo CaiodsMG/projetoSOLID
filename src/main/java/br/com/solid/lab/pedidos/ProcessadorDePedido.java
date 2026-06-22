@@ -1,30 +1,50 @@
 package br.com.solid.lab.pedidos;
+
 import java.util.List;
 
 public class ProcessadorDePedido {
-    private final CalculadorDeTotal calculadorDeTotal = new CalculadorDeTotal();
-    private final GeradorDeRecibo geradorDeRecibo = new GeradorDeRecibo();
-    private final RepositorioDePedido repositorioDePedidos = new RepositorioDePedido();
-    private final ServicoDeEmail servicoDeEmail = new ServicoDeEmail();
-    
+    private final CalculadorDeTotal calculadorDeTotal;
+    private final GeradorRecibo geradorDeRecibo;
+    private final RepositorioPedidos repositorioDePedidos;
+    private final NotificacaoEmail notificacaoDeEmail;
+
+    public ProcessadorDePedido(
+            CalculadorDeTotal calculadorDeTotal,
+            GeradorRecibo geradorDeRecibo,
+            RepositorioPedidos repositorioDePedidos,
+            NotificacaoEmail notificacaoDeEmail
+    ) {
+        this.calculadorDeTotal = calculadorDeTotal;
+        this.geradorDeRecibo = geradorDeRecibo;
+        this.repositorioDePedidos = repositorioDePedidos;
+        this.notificacaoDeEmail = notificacaoDeEmail;
+    }
+
+    public ProcessadorDePedido() {
+        this(
+                new CalculadorDeTotal(),
+                new GeradorDeRecibo(),
+                new RepositorioDePedido(),
+                new ServicoDeEmail()
+        );
+    }
 
     public String processar(Pedido pedido) {
-       double total = calculadorDeTotal.calcular(pedido);
+        double total = calculadorDeTotal.calcular(pedido);
 
-       String recibo = geradorDeRecibo.gerarRecibo(pedido, total);
+        String recibo = geradorDeRecibo.gerarRecibo(pedido, total);
 
-       repositorioDePedidos.salvar(pedido, total);
-       servicoDeEmail.enviarConfirmacao(pedido, total);
+        repositorioDePedidos.salvar(pedido, total);
+        notificacaoDeEmail.enviarConfirmacao(pedido, total);
 
-       return recibo;
+        return recibo;
     }
 
     public List<String> pedidosSalvos() {
-    return repositorioDePedidos.pedidosSalvos();
-}
+        return ((RepositorioDePedido) repositorioDePedidos).pedidosSalvos();
+    }
 
-public List<String> emailsEnviados() {
-    return servicoDeEmail.emailsEnviados();
-}
-
+    public List<String> emailsEnviados() {
+        return ((ServicoDeEmail) notificacaoDeEmail).emailsEnviados();
+    }
 }
